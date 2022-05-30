@@ -1,0 +1,21 @@
+BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.handyman),
+                label: 'Find Trades',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.receipt_long),
+                label: 'Quotes',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            backgroundColor: Colors.greenAccent,
+            unselectedItemColor: Colors.blueGrey,
+            selectedItemColor: Colors.blueAccent,
+            onTap: _onTap,
+          ),

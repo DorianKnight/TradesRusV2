@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql')
-const PORT = 8080;
+const PORT = 8000;
 
 //app.use(express.json())
 
@@ -21,8 +21,8 @@ db.connect(err => {
 
 // 
 
-app.get('/trade', (req, res) => {
-    let sql = 'SELECT * FROM alltrades'
+app.get('/tilers', (req, res) => {
+    let sql = 'SELECT * FROM alltrades WHERE trade = "tiling"'
     let query = db.query(sql, (err, result) => {
         if(err){
             throw err
@@ -36,6 +36,65 @@ app.get('/trade', (req, res) => {
     
 })
 
+app.get('/roofers', (req, res) => {
+    let sql = 'SELECT * FROM alltrades WHERE trade = "roofing"'
+    let query = db.query(sql, (err, result) => {
+        if(err){
+            throw err
+        }
+        console.log(result)
+        res.send(result)
+        
+
+        
+    })
+    
+})
+
+app.get('/welders', (req, res) => {
+    let sql = 'SELECT * FROM alltrades WHERE trade = "welding"'
+    let query = db.query(sql, (err, result) => {
+        if(err){
+            throw err
+        }
+        console.log(result)
+        res.send(result)
+        
+
+        
+    })
+    
+})
+
+app.get('/floorers', (req, res) => {
+    let sql = 'SELECT * FROM alltrades WHERE trade = "flooring"'
+    let query = db.query(sql, (err, result) => {
+        if(err){
+            throw err
+        }
+        console.log(result)
+        res.send(result)
+        
+
+        
+    })
+    
+})
+
+app.get('/plumbers', (req, res) => {
+    let sql = 'SELECT * FROM alltrades WHERE trade = "plumbing"'
+    let query = db.query(sql, (err, result) => {
+        if(err){
+            throw err
+        }
+        console.log(result)
+        res.send(result)
+        
+
+        
+    })
+    
+})
 app.listen(
     PORT, () => console.log(`it\'s alive on http://localhost:${PORT}`)
 )

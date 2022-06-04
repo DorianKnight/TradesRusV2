@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
-const mysql = require('mysql')
+const mysql = require('mysql');
 const PORT = 8000;
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
 
 //app.use(express.json())
 
@@ -22,6 +27,7 @@ db.connect(err => {
 // 
 
 app.get('/tilers', (req, res) => {
+    req.body
     let sql = 'SELECT * FROM alltrades WHERE trade = "tiling"'
     let query = db.query(sql, (err, result) => {
         if(err){
@@ -95,6 +101,47 @@ app.get('/plumbers', (req, res) => {
     })
     
 })
+
+//Add new account to database
+app.post('/addaccount', (req, res) => {
+    console.log(req.body);
+    var email = req.body[0].email;
+    var password = req.body[0].password;
+    let post = {email: email, password: password};
+    //let post = {email: ${}}
+    //(id, email, password) VALUES (NULL, 123, 456)
+    let sql = `INSERT INTO profiles SET ?`;
+    //let sql = 'INSERT INTO alltrades SET ?'
+    let query = db.query(sql, post, err => {
+        if(err) {
+            throw err
+        }
+        res.send ('Account added')
+    })
+    
+    
+    console.log(req.body[0].email);
+    console.log(req.body[0].password);
+})
+
+
+//Request password hash of email
+app.post('/login', (req, res) => {
+    console.log(req.body);
+    email = String(req.body[0].email);
+    //console.log(email)
+    //let sql = "SELECT * FROM profiles WHERE email = 'Jacob@gmail.com'";
+    let sql = "SELECT * FROM profiles WHERE email = '"+email+"'";
+    let query = db.query(sql, (err, result) => {
+    if(err){
+        throw err
+    }
+    console.log(result)
+    res.send(result)
+    //console.log(`${email}`);
+    })
+})
+
 app.listen(
     PORT, () => console.log(`it\'s alive on http://localhost:${PORT}`)
 )

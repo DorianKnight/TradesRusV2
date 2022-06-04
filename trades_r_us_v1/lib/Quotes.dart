@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trades_r_us_v1/CreateAccount.dart';
 import 'package:trades_r_us_v1/LandingPage.dart';
+import 'Profile.dart';
 import 'QuoteDemoPage.dart';
 import 'FindTrades.dart';
 import 'PopUpMenu.dart';
@@ -12,6 +14,7 @@ class Quotes extends StatefulWidget {
 }
 
 class _Quotes extends State<Quotes> {
+  bool isLoggedin = MyAccount.loggedin;
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
@@ -27,11 +30,36 @@ class _Quotes extends State<Quotes> {
 
           ///
           ///
-          body: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 0,
-            crossAxisSpacing: 0,
-            children: getChildrenOfGridview(context),
+          body: Visibility(
+            visible: isLoggedin,
+            child: GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              children: getChildrenOfGridview(context),
+            ),
+            replacement: Container(
+              child: Card(
+                child: ListTile(
+                  title: Text(
+                    "Log in to view your quotes",
+                    style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                  subtitle: Text(
+                    "Tap button to log in",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () {
+                    setState(() {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => MyProfile()));
+                    });
+                  },
+                ),
+              ),
+            ),
           ),
 
           ///

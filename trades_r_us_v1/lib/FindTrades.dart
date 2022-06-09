@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'LandingPage.dart';
 import 'PopUpMenu.dart';
 import 'Quotes.dart';
+import 'TradeFloorer.dart';
+import 'TradePlumber.dart';
+import 'TradeRoofers.dart';
+import 'TradeTilers.dart';
+import 'TradeWelders.dart';
 import 'TradesDemoPage.dart';
 
 class FindTrades extends StatefulWidget {
@@ -100,27 +105,27 @@ List<Widget> getChildrenOfGridview(BuildContext context) {
         'Roofing',
         'https://www.build-review.com/wp-content/uploads/2021/01/roofing.jpg',
         context,
-        'TradesDemoPage'),
+        'TradeRoofers'),
     createGridViewChild(
         'Welding',
         'https://www.safetyandhealthmagazine.com/ext/resources/images/safety-tips/welder.jpg?1483464014',
         context,
-        'TradesDemoPage'),
+        'TradeWelders'),
     createGridViewChild(
         'Flooring',
         'https://contentgrid.homedepot-static.com/hdus/en_US/DTCCOMNEW/Articles/types-of-flooring-hero-A.jpg',
         context,
-        'TradesDemoPage'),
+        'TradeFloorers'),
     createGridViewChild(
         'Tiling',
         'https://media.istockphoto.com/photos/laying-ceramic-tiles-picture-id534500443?k=20&m=534500443&s=612x612&w=0&h=UmvBneubcoNrt9huWf3UQGT7lLxkC9W4YT7uP1OuVJ4=',
         context,
-        'TradesDemoPage'),
+        'TradeTilers'),
     createGridViewChild(
         'Plumbing',
         'https://blog.herzing.ca/hubfs/iStock-615603432.jpg',
         context,
-        'TradesDemoPage'),
+        'TradePlumbers'),
   ];
 }
 
@@ -136,6 +141,31 @@ void pageDirector(BuildContext context, String destination) {
       {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const DemoTrade()));
+      }
+      break;
+    case 'TradeTilers':
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => Tilers()));
+      }
+      break;
+    case 'TradePlumbers':
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => Plumbers()));
+      }
+      break;
+    case 'TradeRoofers':
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => Roofers()));
+      }
+      break;
+    case 'TradeWelders':
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => Welders()));
+      }
+      break;
+    case 'TradeFloorers':
+      {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => Floorers()));
       }
       break;
   }
